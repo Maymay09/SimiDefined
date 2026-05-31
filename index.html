@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIMI DEFINED</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--gold:#C9A227;--gold-light:#E8C84A;--gold-dark:#9A7A1A;
+--ivory:#F8F5F0;--cream:#F0EBE3;--beige:#E8DDD0;
+--black:#0A0A0A;--charcoal:#1A1A1A;--dark:#2A2522;
+--white:#FFFFFF;--gray:#888;--light-gray:#f4f1ed;
+--font-serif:'Cormorant Garamond',Georgia,serif;
+--font-sans:'Montserrat',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--ivory);color:var(--black);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);padding:0 4rem;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:1px solid rgba(201,162,39,0.2)}
+.nav-logo{font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--gold);letter-spacing:4px;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:1.5rem}
+.nav-icon{color:rgba(255,255,255,0.8);cursor:pointer;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;background:none;border:none;transition:color 0.3s}
+.nav-icon:hover{color:var(--gold)}
+.cart-btn{background:var(--gold);color:var(--black);border:none;padding:0.5rem 1.2rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.3s}
+.cart-btn:hover{background:var(--gold-light)}
+
+/* PAGE SYSTEM */
+.page{display:none;padding-top:70px}
+.page.active{display:block}
+
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0a 0%,#1a1510 40%,#0d0c0a 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:30px 30px}
+.hero-accent{position:absolute;right:0;top:0;bottom:0;width:40%;background:linear-gradient(to left,rgba(201,162,39,0.08),transparent)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem}
+.hero-label{font-size:0.65rem;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;justify-content:center}
+.hero-label::before,.hero-label::after{content:'';width:40px;height:1px;background:var(--gold);opacity:0.5}
+.hero-title{font-family:var(--font-serif);font-size:5rem;font-weight:300;color:var(--white);line-height:1.05;margin-bottom:1.5rem;letter-spacing:-1px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);max-width:500px;margin:0 auto 3rem;line-height:2}
+.hero-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--black);border:none;padding:1rem 2.5rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:500}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.3);padding:1rem 2.5rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:3px;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.3}50%{opacity:1}}
+
+/* SECTION COMMON */
+section{padding:6rem 4rem}
+.section-label{font-size:0.6rem;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.section-label::before{content:'';width:25px;height:1px;background:var(--gold)}
+.section-title{font-family:var(--font-serif);font-size:3rem;font-weight:300;color:var(--charcoal);line-height:1.1;margin-bottom:1rem}
+.section-sub{font-size:0.75rem;letter-spacing:1px;color:var(--gray);line-height:1.8;max-width:480px}
+
+/* CATEGORIES */
+.categories-section{background:var(--charcoal)}
+.categories-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:3rem}
+.cat-card{position:relative;height:380px;overflow:hidden;cursor:pointer}
+.cat-card:first-child{grid-column:span 2;height:480px}
+.cat-bg{position:absolute;inset:0;transition:transform 0.6s ease}
+.cat-card:hover .cat-bg{transform:scale(1.05)}
+.cat-1{background:linear-gradient(135deg,#1a1008,#2d1f0a)}
+.cat-2{background:linear-gradient(135deg,#0d1520,#1a2535)}
+.cat-3{background:linear-gradient(135deg,#1a0d14,#2a1520)}
+.cat-4{background:linear-gradient(135deg,#0d1a12,#152a1a)}
+.cat-5{background:linear-gradient(135deg,#1a1a1a,#2a2a2a)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%)}
+.cat-pattern{position:absolute;inset:0;opacity:0.06;background-image:repeating-linear-gradient(0deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 20px),repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 20px)}
+.cat-content{position:absolute;bottom:2rem;left:2rem;right:2rem}
+.cat-icon{font-size:2rem;margin-bottom:0.5rem;opacity:0.7}
+.cat-name{font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:0.3rem}
+.cat-count{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(201,162,39,0.7)}
+.cat-arrow{width:32px;height:32px;border:1px solid rgba(201,162,39,0.4);display:flex;align-items:center;justify-content:center;margin-top:1rem;color:var(--gold);font-size:1.2rem;transition:all 0.3s}
+.cat-card:hover .cat-arrow{background:var(--gold);color:var(--black)}
+
+/* PRODUCTS */
+.products-section{background:var(--ivory)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+.product-card{cursor:pointer;group:true}
+.product-img-wrap{position:relative;overflow:hidden;background:var(--cream);aspect-ratio:3/4;margin-bottom:1.2rem}
+.product-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 0.6s ease}
+.product-card:hover .product-img-inner{transform:scale(1.04)}
+.product-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem}
+.product-silhouette{opacity:0.15}
+.product-actions{position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(to top,rgba(10,10,10,0.85),transparent);transform:translateY(100%);transition:transform 0.3s ease;display:flex;gap:0.5rem}
+.product-card:hover .product-actions{transform:translateY(0)}
+.quick-view{flex:1;background:var(--gold);color:var(--black);border:none;padding:0.6rem;font-family:var(--font-sans);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:500}
+.wishlist-btn{width:36px;height:36px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:var(--white);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.product-badge{position:absolute;top:1rem;left:1rem;background:var(--gold);color:var(--black);font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.7rem;font-weight:600}
+.product-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--charcoal);margin-bottom:0.4rem}
+.product-category{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.product-price{font-size:0.85rem;font-weight:500;color:var(--charcoal);letter-spacing:1px}
+.product-price span{color:var(--gray);text-decoration:line-through;margin-left:0.5rem;font-weight:300}
+
+/* MADE TO ORDER */
+.mto-section{background:var(--charcoal);overflow:hidden;position:relative}
+.mto-bg-text{position:absolute;font-family:var(--font-serif);font-size:20rem;font-weight:600;color:rgba(201,162,39,0.03);top:-3rem;right:-2rem;line-height:1;pointer-events:none;white-space:nowrap}
+.mto-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;z-index:1}
+.mto-steps{display:flex;flex-direction:column;gap:0;margin-top:3rem}
+.mto-step{display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid rgba(255,255,255,0.07);position:relative}
+.mto-step:last-child{border-bottom:none}
+.step-num{font-family:var(--font-serif);font-size:3rem;font-weight:300;color:rgba(201,162,39,0.2);line-height:1;min-width:60px}
+.step-content{}
+.step-title{font-family:var(--font-serif);font-size:1.2rem;color:var(--white);margin-bottom:0.3rem}
+.step-desc{font-size:0.7rem;letter-spacing:1px;color:rgba(255,255,255,0.4);line-height:1.8}
+.mto-visual{position:relative}
+.mto-card{background:rgba(201,162,39,0.05);border:1px solid rgba(201,162,39,0.15);padding:3rem;text-align:center}
+.mto-icon-big{font-size:5rem;margin-bottom:1.5rem;opacity:0.3}
+.mto-card-title{font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--white);margin-bottom:1rem;font-style:italic}
+.mto-card-desc{font-size:0.7rem;letter-spacing:1px;color:rgba(255,255,255,0.4);line-height:2;margin-bottom:2rem}
+.section-title-light{color:var(--white)}
+.section-sub-light{color:rgba(255,255,255,0.4)}
+
+/* TESTIMONIALS */
+.testimonials-section{background:var(--cream)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.testimonial-card{background:var(--white);padding:2.5rem;position:relative}
+.testimonial-card::before{content:'❝';position:absolute;top:1.5rem;right:2rem;font-size:4rem;color:rgba(201,162,39,0.1);font-family:Georgia;line-height:1}
+.stars{color:var(--gold);font-size:0.8rem;letter-spacing:2px;margin-bottom:1rem}
+.testimonial-text{font-family:var(--font-serif);font-size:1.05rem;font-weight:300;font-style:italic;color:var(--charcoal);line-height:1.8;margin-bottom:1.5rem}
+.testimonial-author{display:flex;align-items:center;gap:1rem}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-sans);font-size:0.75rem;font-weight:600;color:var(--black)}
+.author-name{font-size:0.8rem;font-weight:500;color:var(--charcoal)}
+.author-title{font-size:0.65rem;letter-spacing:1px;color:var(--gray)}
+.verified{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* NEWSLETTER */
+.newsletter-section{background:var(--black);text-align:center;padding:6rem}
+.newsletter-title{font-family:var(--font-serif);font-size:3.5rem;font-weight:300;color:var(--white);margin-bottom:1rem;font-style:italic}
+.newsletter-sub{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3rem}
+.newsletter-form{display:flex;max-width:500px;margin:0 auto;gap:0}
+.newsletter-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(201,162,39,0.2);border-right:none;padding:1rem 1.5rem;color:var(--white);font-family:var(--font-sans);font-size:0.75rem;letter-spacing:1px;outline:none}
+.newsletter-input::placeholder{color:rgba(255,255,255,0.2)}
+.newsletter-input:focus{border-color:var(--gold)}
+.newsletter-submit{background:var(--gold);color:var(--black);border:none;padding:1rem 2rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:500;white-space:nowrap}
+
+/* SHOP PAGE */
+.shop-header{background:var(--charcoal);padding:5rem 4rem 3rem;text-align:center}
+.shop-title{font-family:var(--font-serif);font-size:4rem;font-weight:300;color:var(--white);font-style:italic}
+.shop-breadcrumb{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem}
+.shop-body{display:grid;grid-template-columns:280px 1fr;gap:3rem;padding:4rem;background:var(--ivory)}
+.filters-panel{position:sticky;top:90px;height:fit-content}
+.filter-group{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--beige)}
+.filter-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--charcoal);font-weight:600;margin-bottom:1rem}
+.filter-options{display:flex;flex-direction:column;gap:0.6rem}
+.filter-option{display:flex;align-items:center;gap:0.7rem;cursor:pointer}
+.filter-option input{accent-color:var(--gold);cursor:pointer}
+.filter-option label{font-size:0.75rem;color:var(--gray);cursor:pointer;letter-spacing:0.5px}
+.color-dots{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem}
+.color-dot{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s}
+.color-dot.active,.color-dot:hover{border-color:var(--gold)}
+.shop-main{}
+.shop-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.shop-count{font-size:0.7rem;letter-spacing:1px;color:var(--gray)}
+.sort-select{background:var(--white);border:1px solid var(--beige);padding:0.6rem 1rem;font-family:var(--font-sans);font-size:0.7rem;color:var(--charcoal);cursor:pointer;outline:none}
+.search-bar{display:flex;background:var(--white);border:1px solid var(--beige)}
+.search-input{border:none;padding:0.6rem 1rem;font-family:var(--font-sans);font-size:0.7rem;color:var(--charcoal);outline:none;width:200px}
+.search-btn{background:var(--gold);border:none;padding:0.6rem 1rem;cursor:pointer;color:var(--black);font-size:0.75rem}
+.products-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+
+/* PRODUCT DETAIL */
+.product-detail{padding:4rem;background:var(--ivory);display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.product-gallery{}
+.main-img{background:var(--cream);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;overflow:hidden}
+.main-img-inner{width:100%;height:100%}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem}
+.thumb{background:var(--beige);aspect-ratio:3/4;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;display:flex;align-items:center;justify-content:center;font-size:1.5rem;opacity:0.5}
+.thumb.active,.thumb:hover{border-color:var(--gold);opacity:1}
+.product-info{padding-top:1rem}
+.product-detail-cat{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem}
+.product-detail-name{font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--charcoal);line-height:1.2;margin-bottom:1rem}
+.product-detail-price{font-size:1.5rem;font-weight:500;color:var(--charcoal);letter-spacing:1px;margin-bottom:2rem}
+.size-label{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--charcoal);font-weight:600;margin-bottom:0.8rem}
+.size-grid{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.size-btn{width:44px;height:44px;border:1px solid var(--beige);background:var(--white);font-family:var(--font-sans);font-size:0.7rem;cursor:pointer;transition:all 0.2s}
+.size-btn.active,.size-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.detail-actions{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem}
+.btn-gold{background:var(--gold);color:var(--black);border:none;padding:1.1rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:600;width:100%;transition:background 0.3s}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-dark{background:var(--black);color:var(--white);border:none;padding:1.1rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:500;width:100%}
+.btn-whatsapp{background:#25D366;color:var(--white);border:none;padding:1.1rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:500;width:100%}
+.product-meta{border-top:1px solid var(--beige);padding-top:1.5rem}
+.meta-row{display:flex;gap:0.5rem;margin-bottom:0.6rem;font-size:0.72rem}
+.meta-label{color:var(--gray);min-width:80px}
+.meta-val{color:var(--charcoal);font-weight:500}
+
+/* MTO FORM PAGE */
+.mto-page{background:var(--ivory)}
+.mto-page-header{background:var(--charcoal);padding:5rem 4rem 3rem;text-align:center}
+.form-section{padding:5rem 4rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:3rem auto 0}
+.form-group{display:flex;flex-direction:column;gap:0.5rem}
+.form-group.full{grid-column:span 2}
+.form-label{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--charcoal);font-weight:600}
+.form-input,.form-textarea{background:var(--white);border:1px solid var(--beige);padding:0.9rem 1rem;font-family:var(--font-sans);font-size:0.8rem;color:var(--charcoal);outline:none;transition:border-color 0.2s;width:100%}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold)}
+.form-textarea{resize:vertical;min-height:100px}
+.upload-area{border:2px dashed var(--beige);padding:3rem;text-align:center;background:var(--white);cursor:pointer;transition:border-color 0.3s}
+.upload-area:hover{border-color:var(--gold)}
+.upload-icon{font-size:2.5rem;opacity:0.3;margin-bottom:0.5rem}
+.upload-text{font-size:0.7rem;letter-spacing:1px;color:var(--gray)}
+.measurements-note{background:rgba(201,162,39,0.05);border-left:3px solid var(--gold);padding:1.5rem;grid-column:span 2}
+.measurements-note p{font-size:0.7rem;letter-spacing:0.5px;color:var(--charcoal);line-height:1.8}
+
+/* ABOUT */
+.about-hero{background:var(--charcoal);padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-body{padding:6rem 4rem}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:4rem 0}
+.about-card{padding:2.5rem;background:var(--white);border-bottom:3px solid var(--gold)}
+.about-card-icon{font-size:2rem;margin-bottom:1rem;opacity:0.6}
+.about-card-title{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--charcoal);margin-bottom:0.5rem}
+.about-card-text{font-size:0.72rem;letter-spacing:0.5px;color:var(--gray);line-height:1.9}
+.founder-section{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:5rem 4rem;background:var(--cream)}
+.founder-img{background:linear-gradient(135deg,#1a1510,#2d2520);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:0.3}
+.founder-quote{font-family:var(--font-serif);font-size:1.8rem;font-weight:300;font-style:italic;color:var(--charcoal);line-height:1.5;margin-bottom:1.5rem}
+.founder-name{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* CONTACT */
+.contact-body{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px}
+.contact-info{background:var(--charcoal);padding:5rem 4rem}
+.contact-form-panel{background:var(--ivory);padding:5rem 4rem}
+.contact-info-item{display:flex;gap:1.5rem;margin-bottom:2.5rem}
+.contact-icon{width:44px;height:44px;border:1px solid rgba(201,162,39,0.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.2rem;flex-shrink:0}
+.contact-info-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.3rem}
+.contact-info-val{font-size:0.85rem;color:var(--white)}
+
+/* FOOTER */
+footer{background:var(--black);padding:5rem 4rem 2rem;border-top:1px solid rgba(201,162,39,0.1)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+.footer-brand-name{font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
+.footer-tagline{font-size:0.7rem;letter-spacing:1px;color:rgba(255,255,255,0.3);line-height:1.9;max-width:280px;margin-bottom:2rem}
+.footer-social{display:flex;gap:0.8rem}
+.social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:0.8rem;cursor:pointer;transition:all 0.3s;text-decoration:none}
+.social-btn:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col-title{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;font-weight:600}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.8rem}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:0.5px;transition:color 0.3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:0.65rem;letter-spacing:1px;color:rgba(255,255,255,0.2)}
+
+/* WHATSAPP */
+.whatsapp-fab{position:fixed;bottom:2rem;right:2rem;width:55px;height:55px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;box-shadow:0 4px 20px rgba(37,211,102,0.3);font-size:1.5rem;transition:transform 0.3s}
+.whatsapp-fab:hover{transform:scale(1.1)}
+
+/* CART DRAWER */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1100;display:none;opacity:0;transition:opacity 0.3s}
+.cart-overlay.open{display:block;opacity:1}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:420px;background:var(--white);z-index:1101;transform:translateX(100%);transition:transform 0.4s ease;display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{padding:2rem;border-bottom:1px solid var(--beige);display:flex;justify-content:space-between;align-items:center}
+.cart-title-text{font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--charcoal)}
+.cart-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--gray)}
+.cart-items{flex:1;overflow-y:auto;padding:2rem}
+.cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--beige)}
+.cart-item-img{width:80px;height:100px;background:var(--cream);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:0.4}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:var(--font-serif);font-size:1rem;color:var(--charcoal);margin-bottom:0.3rem}
+.cart-item-price{font-size:0.8rem;font-weight:500;color:var(--charcoal)}
+.cart-item-qty{display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem}
+.qty-btn{width:24px;height:24px;border:1px solid var(--beige);background:none;cursor:pointer;font-size:0.9rem}
+.qty-num{font-size:0.8rem;font-weight:500;min-width:20px;text-align:center}
+.cart-remove{background:none;border:none;color:var(--gray);cursor:pointer;font-size:0.75rem;letter-spacing:1px;margin-top:0.3rem;padding:0}
+.cart-footer{padding:2rem;border-top:1px solid var(--beige)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:1.5rem}
+.cart-total-label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);font-weight:600}
+.cart-total-val{font-size:1.1rem;font-weight:500;color:var(--charcoal)}
+.empty-cart{text-align:center;padding:4rem 2rem}
+.empty-cart-icon{font-size:4rem;opacity:0.15;margin-bottom:1rem}
+.empty-cart-text{font-family:var(--font-serif);font-size:1.2rem;color:var(--gray);font-style:italic}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp 0.7s ease forwards}
+.hero-content>*{animation:fadeUp 0.8s ease forwards;opacity:0}
+.hero-label{animation-delay:0.2s}
+.hero-title{animation-delay:0.4s}
+.hero-sub{animation-delay:0.6s}
+.hero-btns{animation-delay:0.8s}
+
+/* RESPONSIVE HELPERS */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .categories-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-card:first-child{grid-column:span 2}
+  .products-grid,.products-grid-3{grid-template-columns:repeat(2,1fr)}
+  .mto-grid,.about-hero,.founder-section,.contact-body,.product-detail{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .shop-body{grid-template-columns:1fr}
+  .filters-panel{display:none}
+  .hero-title{font-size:3rem}
+}
+
+/* GOLD DIVIDER */
+.gold-divider{width:40px;height:2px;background:var(--gold);margin:1.5rem 0}
+.gold-divider-center{margin:1.5rem auto}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 0.8rem;font-weight:600}
+.tag-gold{background:rgba(201,162,39,0.1);color:var(--gold)}
+
+/* PAYMENT ICONS */
+.payment-icons{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem}
+.payment-icon{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:0.3rem 0.7rem;font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:1px}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Simi Defined</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+    <li><a href="#" onclick="showPage('mto')">Made to Order</a></li>
+    <li><a href="#" onclick="showPage('about')">About</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon" onclick="showPage('shop')">Search</button>
+    <!-- <button class="nav-icon" onclick="toggleCart()">Bag (2)</button> -->
+    <button class="cart-btn" onclick="toggleCart()">Cart</button>
+  </div>
+</nav>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title-text">Your Bag</span>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items">
+    <div class="cart-item">
+      <div class="cart-item-img">👗</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Adaeze Gold Kaftan</div>
+        <div class="cart-item-price">₦185,000</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn">+</button>
+        </div>
+        <button class="cart-remove">Remove</button>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img">👘</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Ife Luxury Boubou</div>
+        <div class="cart-item-price">₦225,000</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn">+</button>
+        </div>
+        <button class="cart-remove">Remove</button>
+      </div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val">₦410,000</span>
+    </div>
+    <button class="btn-gold" style="margin-bottom:0.8rem">Proceed to Checkout</button>
+    <button class="btn-dark">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-accent"></div>
+    <div class="hero-content">
+      <div class="hero-label">Lagos · Nigeria · Est. 2020</div>
+      <h1 class="hero-title">Fashion Designed<br><em>Around You</em></h1>
+      <p class="hero-sub">Premium Boubous, Kaftans, Dresses and Corporate Wear Made For Modern Women.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('shop')">Shop Collection</button>
+        <button class="btn-outline" onclick="showPage('mto')">Book Consultation</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="categories-section">
+    <div>
+      <div class="section-label">The Collection</div>
+      <h2 class="section-title" style="color:var(--white)">Curated for the<br><em style="font-style:italic">Modern Woman</em></h2>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card" onclick="showPage('shop')">
+        <div class="cat-bg cat-1"></div>
+        <div class="cat-pattern"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">🌸</div>
+          <div class="cat-name">Luxury Boubous</div>
+          <div class="cat-count">24 Pieces</div>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <div class="cat-bg cat-2"></div>
+        <div class="cat-pattern"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">✨</div>
+          <div class="cat-name">Kaftans</div>
+          <div class="cat-count">18 Pieces</div>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <div class="cat-bg cat-3"></div>
+        <div class="cat-pattern"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">💫</div>
+          <div class="cat-name">Luxury Dresses</div>
+          <div class="cat-count">32 Pieces</div>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <div class="cat-bg cat-4"></div>
+        <div class="cat-pattern"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">💼</div>
+          <div class="cat-name">Corporate Wear</div>
+          <div class="cat-count">15 Pieces</div>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('mto')">
+        <div class="cat-bg cat-5"></div>
+        <div class="cat-pattern"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">🪡</div>
+          <div class="cat-name">Made to Order</div>
+          <div class="cat-count">Bespoke</div>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="products-section">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div>
+        <div class="section-label">Best Sellers</div>
+        <h2 class="section-title">Most Loved<br><em style="font-family:var(--font-serif);font-style:italic">This Season</em></h2>
+      </div>
+      <button class="btn-outline" style="color:var(--charcoal);border-color:var(--beige);padding:0.8rem 2rem" onclick="showPage('shop')">View All →</button>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" onclick="showPage('product')">
+        <div class="product-img-wrap">
+          <div class="product-badge">Best Seller</div>
+          <div class="product-img-inner">
+            <div class="product-placeholder">
+              <svg width="120" height="160" viewBox="0 0 120 160" class="product-silhouette">
+                <ellipse cx="60" cy="30" rx="20" ry="25" fill="#C9A227"/>
+                <path d="M20 60 Q15 80 10 160 L110 160 Q105 80 100 60 Q80 50 60 55 Q40 50 20 60Z" fill="#C9A227"/>
+                <path d="M20 60 Q10 70 5 90 L25 95 Q30 75 40 68" fill="#9A7A1A"/>
+                <path d="M100 60 Q110 70 115 90 L95 95 Q90 75 80 68" fill="#9A7A1A"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-actions">
+            <button class="quick-view" onclick="event.stopPropagation();showPage('product')">Quick View</button>
+            <button class="wishlist-btn">♡</button>
+          </div>
+        </div>
+        <div class="product-category">Kaftans</div>
+        <div class="product-name">Adaeze Gold Kaftan</div>
+        <div class="product-price">₦185,000 <span>₦210,000</span></div>
+      </div>
+      <div class="product-card" onclick="showPage('product')">
+        <div class="product-img-wrap">
+          <div class="product-badge">New</div>
+          <div class="product-img-inner">
+            <div class="product-placeholder">
+              <svg width="120" height="170" viewBox="0 0 120 170" class="product-silhouette">
+                <ellipse cx="60" cy="28" rx="18" ry="22" fill="#C9A227"/>
+                <path d="M15 55 Q10 75 8 170 L112 170 Q110 75 105 55 Q85 42 60 48 Q35 42 15 55Z" fill="#C9A227"/>
+                <path d="M40 55 Q45 80 44 120 Q50 125 60 126 Q70 125 76 120 Q75 80 80 55" fill="#9A7A1A" opacity="0.4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-actions">
+            <button class="quick-view" onclick="event.stopPropagation();showPage('product')">Quick View</button>
+            <button class="wishlist-btn">♡</button>
+          </div>
+        </div>
+        <div class="product-category">Boubous</div>
+        <div class="product-name">Ife Luxury Boubou</div>
+        <div class="product-price">₦225,000</div>
+      </div>
+      <div class="product-card" onclick="showPage('product')">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <div class="product-placeholder">
+              <svg width="100" height="165" viewBox="0 0 100 165" class="product-silhouette">
+                <ellipse cx="50" cy="22" rx="16" ry="19" fill="#C9A227"/>
+                <path d="M20 45 L15 100 Q14 165 50 165 Q86 165 85 100 L80 45 Q65 38 50 42 Q35 38 20 45Z" fill="#C9A227"/>
+                <line x1="50" y1="42" x2="50" y2="165" stroke="#9A7A1A" strokeWidth="2" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-actions">
+            <button class="quick-view" onclick="event.stopPropagation();showPage('product')">Quick View</button>
+            <button class="wishlist-btn">♡</button>
+          </div>
+        </div>
+        <div class="product-category">Corporate Wear</div>
+        <div class="product-name">Chisom Power Suit</div>
+        <div class="product-price">₦145,000</div>
+      </div>
+      <div class="product-card" onclick="showPage('product')">
+        <div class="product-img-wrap">
+          <div class="product-badge">Limited</div>
+          <div class="product-img-inner">
+            <div class="product-placeholder">
+              <svg width="110" height="160" viewBox="0 0 110 160" class="product-silhouette">
+                <ellipse cx="55" cy="24" rx="17" ry="20" fill="#C9A227"/>
+                <path d="M18 50 Q12 72 10 160 L100 160 Q98 72 92 50 Q75 40 55 45 Q35 40 18 50Z" fill="#C9A227"/>
+                <path d="M18 50 Q5 55 2 80 L22 85 Q28 65 38 58" fill="#9A7A1A"/>
+                <path d="M92 50 Q105 55 108 80 L88 85 Q82 65 72 58" fill="#9A7A1A"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-actions">
+            <button class="quick-view" onclick="event.stopPropagation();showPage('product')">Quick View</button>
+            <button class="wishlist-btn">♡</button>
+          </div>
+        </div>
+        <div class="product-category">Luxury Dresses</div>
+        <div class="product-name">Obiageli Evening Gown</div>
+        <div class="product-price">₦310,000 <span>₦350,000</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MADE TO ORDER PROCESS -->
+  <section class="mto-section">
+    <div class="mto-bg-text">Bespoke</div>
+    <div class="mto-grid">
+      <div>
+        <div class="section-label" style="color:var(--gold)">Made to Order</div>
+        <h2 class="section-title section-title-light">Your Vision,<br><em style="font-style:italic">Our Craft</em></h2>
+        <div class="gold-divider"></div>
+        <p class="section-sub section-sub-light">Every stitch tells your story. From measurement to masterpiece — crafted exclusively for you in our Lagos atelier.</p>
+        <div class="mto-steps">
+          <div class="mto-step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Select Your Style</div><div class="step-desc">Browse our lookbook or bring your own inspiration. Our stylists guide you to the perfect silhouette.</div></div></div>
+          <div class="mto-step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Submit Measurements</div><div class="step-desc">Share your measurements online or visit our Lagos studio for a professional fitting session.</div></div></div>
+          <div class="mto-step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Production Begins</div><div class="step-desc">Our master tailors craft your piece with the finest fabrics. Timeline: 2–4 weeks.</div></div></div>
+          <div class="mto-step"><div class="step-num">04</div><div class="step-content"><div class="step-title">Delivered to You</div><div class="step-desc">White-glove delivery anywhere in Nigeria. International shipping available.</div></div></div>
+        </div>
+        <button class="btn-primary" style="margin-top:2rem" onclick="showPage('mto')">Start Your Order</button>
+      </div>
+      <div class="mto-visual">
+        <div class="mto-card">
+          <div class="mto-icon-big">🪡</div>
+          <div class="mto-card-title">Bespoke Atelier Experience</div>
+          <div class="mto-card-desc">Every garment is crafted by hand in our Lagos studio using premium imported and local fabrics. We combine traditional Nigerian craftsmanship with contemporary luxury design.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:left">
+            <div style="border-left:2px solid rgba(201,162,39,0.3);padding-left:1rem"><div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--gold)">500+</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Pieces Made</div></div>
+            <div style="border-left:2px solid rgba(201,162,39,0.3);padding-left:1rem"><div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--gold)">98%</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Satisfaction</div></div>
+            <div style="border-left:2px solid rgba(201,162,39,0.3);padding-left:1rem"><div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--gold)">2–4</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Weeks Timeline</div></div>
+            <div style="border-left:2px solid rgba(201,162,39,0.3);padding-left:1rem"><div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--gold)">5★</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Average Rating</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">Words From Our<br><em style="font-family:var(--font-serif);font-style:italic">Valued Clients</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The Adaeze Kaftan I ordered was absolutely breathtaking. Every detail was perfect — the fabric, the embroidery, the fit. I wore it to my sister's wedding and received compliments all night."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CN</div>
+          <div><div class="author-name">Chiamaka Nwosu</div><div class="author-title">Lagos, Nigeria</div><div class="verified">✓ Verified Buyer</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Simi Defined is the only brand I trust for my corporate wardrobe. The quality is impeccable and my colleagues always ask where I shop. Worth every kobo."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AO</div>
+          <div><div class="author-name">Adaeze Okonkwo</div><div class="author-title">Abuja, Nigeria</div><div class="verified">✓ Verified Buyer</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"My made-to-order boubou arrived in 3 weeks, perfectly fitted. The attention to detail and communication throughout was exceptional. I've already placed my second order."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">FA</div>
+          <div><div class="author-name">Fatima Abubakar</div><div class="author-title">Kano, Nigeria</div><div class="verified">✓ Verified Buyer</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-section">
+    <div class="section-label" style="justify-content:center;color:var(--gold)">Exclusive Access</div>
+    <h2 class="newsletter-title">Join the Inner Circle</h2>
+    <p class="newsletter-sub">New arrivals, private sales, and style inspiration — delivered to your inbox.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="Your email address">
+      <button class="newsletter-submit">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Simi Defined</div>
+        <p class="footer-tagline">Premium women's fashion crafted in Lagos, Nigeria. Boubous, Kaftans, Dresses and Corporate Wear for the modern African woman.</p>
+        <div class="footer-social">
+          <a class="social-btn" href="#">ig</a>
+          <a class="social-btn" href="#">tw</a>
+          <a class="social-btn" href="#">fb</a>
+          <a class="social-btn" href="#">wa</a>
+        </div>
+        <div style="margin-top:1.5rem">
+          <div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:0.5rem">We Accept</div>
+          <div class="payment-icons">
+            <span class="payment-icon">Paystack</span>
+            <span class="payment-icon">Flutterwave</span>
+            <span class="payment-icon">Stripe</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('shop')">All Collections</a></li>
+          <li><a href="#">Boubous</a></li>
+          <li><a href="#">Kaftans</a></li>
+          <li><a href="#">Luxury Dresses</a></li>
+          <li><a href="#">Corporate Wear</a></li>
+          <li><a href="#" onclick="showPage('mto')">Made to Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Care</div>
+        <ul class="footer-links">
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Track Your Order</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Simi Defined. All rights reserved. Lagos, Nigeria.</span>
+      <span class="footer-copy">Crafted with love for the modern African woman.</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- SHOP PAGE -->
+<div class="page" id="page-shop">
+  <div class="shop-header">
+    <h1 class="shop-title">The Collection</h1>
+    <p class="shop-breadcrumb">Home → Shop All</p>
+  </div>
+  <div class="shop-body">
+    <div class="filters-panel">
+      <div class="filter-group">
+        <div class="filter-title">Category</div>
+        <div class="filter-options">
+          <div class="filter-option"><input type="checkbox" id="f1" checked><label for="f1">All Items (89)</label></div>
+          <div class="filter-option"><input type="checkbox" id="f2"><label for="f2">Boubous (24)</label></div>
+          <div class="filter-option"><input type="checkbox" id="f3"><label for="f3">Kaftans (18)</label></div>
+          <div class="filter-option"><input type="checkbox" id="f4"><label for="f4">Luxury Dresses (32)</label></div>
+          <div class="filter-option"><input type="checkbox" id="f5"><label for="f5">Corporate Wear (15)</label></div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title">Size</div>
+        <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
+          <button class="size-btn" style="width:36px;height:36px;font-size:0.65rem">XS</button>
+          <button class="size-btn active" style="width:36px;height:36px;font-size:0.65rem">S</button>
+          <button class="size-btn" style="width:36px;height:36px;font-size:0.65rem">M</button>
+          <button class="size-btn" style="width:36px;height:36px;font-size:0.65rem">L</button>
+          <button class="size-btn" style="width:36px;height:36px;font-size:0.65rem">XL</button>
+          <button class="size-btn" style="width:36px;height:36px;font-size:0.65rem">2XL</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title">Color</div>
+        <div class="color-dots">
+          <div class="color-dot active" style="background:#C9A227" title="Gold"></div>
+          <div class="color-dot" style="background:#0A0A0A" title="Black"></div>
+          <div class="color-dot" style="background:#F8F5F0;border:1px solid #ccc" title="Ivory"></div>
+          <div class="color-dot" style="background:#8B4513" title="Brown"></div>
+          <div class="color-dot" style="background:#2E5090" title="Navy"></div>
+          <div class="color-dot" style="background:#722F37" title="Wine"></div>
+          <div class="color-dot" style="background:#2E8B57" title="Emerald"></div>
+          <div class="color-dot" style="background:#D4A0A0" title="Blush"></div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title">Price Range</div>
+        <div style="font-size:0.7rem;color:var(--gray);margin-bottom:0.8rem">₦50,000 — ₦500,000</div>
+        <input type="range" min="50000" max="500000" value="300000" style="width:100%;accent-color:var(--gold)">
+      </div>
+      <div class="filter-group" style="border-bottom:none">
+        <div class="filter-title">Availability</div>
+        <div class="filter-options">
+          <div class="filter-option"><input type="checkbox" id="av1" checked><label for="av1">In Stock</label></div>
+          <div class="filter-option"><input type="checkbox" id="av2"><label for="av2">Made to Order</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="shop-main">
+      <div class="shop-toolbar">
+        <span class="shop-count">Showing 89 products</span>
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div class="search-bar">
+            <input class="search-input" type="text" placeholder="Search styles...">
+            <button class="search-btn">🔍</button>
+          </div>
+          <select class="sort-select">
+            <option>Sort: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+            <option>Best Selling</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid-3">
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-badge">Best Seller</div><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 120 160" class="product-silhouette"><ellipse cx="60" cy="30" rx="20" ry="25" fill="#C9A227"/><path d="M20 60 Q15 80 10 160 L110 160 Q105 80 100 60 Q80 50 60 55 Q40 50 20 60Z" fill="#C9A227"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Kaftans</div><div class="product-name">Adaeze Gold Kaftan</div><div class="product-price">₦185,000</div>
+        </div>
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 120 170" class="product-silhouette"><ellipse cx="60" cy="28" rx="18" ry="22" fill="#C9A227"/><path d="M15 55 Q10 75 8 170 L112 170 Q110 75 105 55 Q85 42 60 48 Q35 42 15 55Z" fill="#C9A227"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Boubous</div><div class="product-name">Ife Luxury Boubou</div><div class="product-price">₦225,000</div>
+        </div>
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-badge">New</div><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 100 165" class="product-silhouette"><ellipse cx="50" cy="22" rx="16" ry="19" fill="#C9A227"/><path d="M20 45 L15 100 Q14 165 50 165 Q86 165 85 100 L80 45 Q65 38 50 42 Q35 38 20 45Z" fill="#C9A227"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Corporate Wear</div><div class="product-name">Chisom Power Suit</div><div class="product-price">₦145,000</div>
+        </div>
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-badge">Limited</div><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 110 160" class="product-silhouette"><ellipse cx="55" cy="24" rx="17" ry="20" fill="#C9A227"/><path d="M18 50 Q12 72 10 160 L100 160 Q98 72 92 50 Q75 40 55 45 Q35 40 18 50Z" fill="#C9A227"/><path d="M18 50 Q5 55 2 80 L22 85" fill="#9A7A1A"/><path d="M92 50 Q105 55 108 80 L88 85" fill="#9A7A1A"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Luxury Dresses</div><div class="product-name">Obiageli Evening Gown</div><div class="product-price">₦310,000 <span>₦350,000</span></div>
+        </div>
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 120 160" class="product-silhouette"><ellipse cx="60" cy="28" rx="19" ry="23" fill="#C9A227"/><path d="M25 52 Q20 80 18 160 L102 160 Q100 80 95 52 Q80 43 60 48 Q40 43 25 52Z" fill="#C9A227"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Kaftans</div><div class="product-name">Nkechi Velvet Kaftan</div><div class="product-price">₦195,000</div>
+        </div>
+        <div class="product-card" onclick="showPage('product')">
+          <div class="product-img-wrap"><div class="product-badge">Sale</div><div class="product-img-inner"><div class="product-placeholder"><svg width="90" height="130" viewBox="0 0 115 165" class="product-silhouette"><ellipse cx="57" cy="26" rx="18" ry="22" fill="#C9A227"/><path d="M20 52 Q16 85 14 165 L100 165 Q98 85 94 52 Q77 42 57 47 Q37 42 20 52Z" fill="#C9A227"/></svg></div></div><div class="product-actions"><button class="quick-view">Quick View</button><button class="wishlist-btn">♡</button></div></div>
+          <div class="product-category">Boubous</div><div class="product-name">Zaria Embroidered Boubou</div><div class="product-price">₦175,000 <span>₦240,000</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer style="background:var(--black);padding:2rem 4rem;border-top:1px solid rgba(201,162,39,0.1)">
+    <div class="footer-bottom" style="border:none;padding:0">
+      <span class="footer-copy">© 2025 Simi Defined. All rights reserved.</span>
+      <button class="btn-outline" style="color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.1);padding:0.5rem 1rem;font-size:0.6rem" onclick="showPage('home')">← Back to Home</button>
+    </div>
+  </footer>
+</div>
+
+<!-- PRODUCT DETAIL PAGE -->
+<div class="page" id="page-product">
+  <div style="background:var(--ivory);padding:1.5rem 4rem;border-bottom:1px solid var(--beige)">
+    <span style="font-size:0.65rem;letter-spacing:2px;color:var(--gray);cursor:pointer" onclick="showPage('shop')">← Shop All</span>
+    <span style="font-size:0.65rem;letter-spacing:2px;color:var(--gray)"> / Kaftans / Adaeze Gold Kaftan</span>
+  </div>
+  <div class="product-detail">
+    <div class="product-gallery">
+      <div class="main-img">
+        <svg width="220" height="320" viewBox="0 0 220 320" style="opacity:0.25">
+          <ellipse cx="110" cy="55" rx="35" ry="45" fill="#C9A227"/>
+          <path d="M35 110 Q28 155 22 320 L198 320 Q192 155 185 110 Q150 90 110 100 Q70 90 35 110Z" fill="#C9A227"/>
+          <path d="M35 110 Q10 120 5 165 L45 175 Q55 130 75 118" fill="#9A7A1A"/>
+          <path d="M185 110 Q210 120 215 165 L175 175 Q165 130 145 118" fill="#9A7A1A"/>
+          <line x1="110" y1="100" x2="110" y2="320" stroke="#9A7A1A" strokeWidth="3" opacity="0.3"/>
+          <path d="M80 120 Q90 160 88 240 Q95 250 110 252 Q125 250 132 240 Q130 160 140 120" fill="#7A5A12" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="gallery-thumbs">
+        <div class="thumb active">👗</div>
+        <div class="thumb">✨</div>
+        <div class="thumb">🪡</div>
+        <div class="thumb">📐</div>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="product-detail-cat">Kaftans</div>
+      <h1 class="product-detail-name">Adaeze Gold Kaftan</h1>
+      <div class="stars" style="margin-bottom:0.5rem;font-size:0.9rem">★★★★★ <span style="font-size:0.7rem;color:var(--gray);margin-left:0.3rem">48 reviews</span></div>
+      <div class="product-detail-price">₦185,000 <span style="font-family:var(--font-sans);font-size:0.9rem;color:var(--gray);text-decoration:line-through;font-weight:300">₦210,000</span></div>
+      <div class="gold-divider"></div>
+      <p style="font-size:0.78rem;letter-spacing:0.5px;color:var(--gray);line-height:1.9;margin-bottom:1.5rem">A masterpiece of Nigerian craftsmanship, the Adaeze Gold Kaftan is tailored from premium imported silk-blend fabric with intricate hand-embroidered details. Perfect for owambe events, weddings, and celebration occasions.</p>
+      <div class="size-label">Select Size</div>
+      <div class="size-grid">
+        <button class="size-btn">XS</button>
+        <button class="size-btn active">S</button>
+        <button class="size-btn">M</button>
+        <button class="size-btn">L</button>
+        <button class="size-btn">XL</button>
+        <button class="size-btn">2XL</button>
+        <button class="size-btn">3XL</button>
+      </div>
+      <div class="size-label">Color</div>
+      <div class="color-dots" style="margin-bottom:1.5rem">
+        <div class="color-dot active" style="background:#C9A227" title="Gold"></div>
+        <div class="color-dot" style="background:#0A0A0A" title="Black"></div>
+        <div class="color-dot" style="background:#722F37" title="Wine"></div>
+      </div>
+      <div class="detail-actions">
+        <button class="btn-gold">Add to Cart</button>
+        <button class="btn-dark">Buy Now</button>
+        <button class="btn-whatsapp">📱 Order via WhatsApp</button>
+      </div>
+      <div class="product-meta">
+        <div class="meta-row"><span class="meta-label">Fabric</span><span class="meta-val">Premium Silk-Blend with Swiss Lace Detail</span></div>
+        <div class="meta-row"><span class="meta-label">Style</span><span class="meta-val">Kaftan, Floor-Length, Wide Sleeves</span></div>
+        <div class="meta-row"><span class="meta-label">Origin</span><span class="meta-val">Handcrafted in Lagos, Nigeria</span></div>
+        <div class="meta-row"><span class="meta-label">Stock</span><span class="meta-val" style="color:#2E8B57">✓ In Stock (3 remaining)</span></div>
+        <div class="meta-row"><span class="meta-label">Delivery</span><span class="meta-val">Lagos 2–3 days · Nigeria 5–7 days</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 4rem 4rem;background:var(--ivory)">
+    <button style="background:none;border:none;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);cursor:pointer" onclick="showPage('shop')">← Continue Shopping</button>
+  </div>
+</div>
+
+<!-- MADE TO ORDER PAGE -->
+<div class="page" id="page-mto">
+  <div class="mto-page-header">
+    <div class="section-label" style="justify-content:center;color:var(--gold)">Bespoke Atelier</div>
+    <h1 class="shop-title">Made to Order</h1>
+    <p class="shop-breadcrumb">Crafted exclusively for you in our Lagos studio</p>
+  </div>
+  <div class="form-section">
+    <div style="max-width:900px;margin:0 auto">
+      <div class="section-label">Your Details</div>
+      <h2 class="section-title" style="font-size:2rem">Tell Us About Your Vision</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input class="form-input" type="tel" placeholder="+234 xxx xxx xxxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Style</label>
+          <select class="form-input" style="cursor:pointer">
+            <option>Select a style</option>
+            <option>Boubou</option>
+            <option>Kaftan</option>
+            <option>Luxury Dress</option>
+            <option>Corporate Wear</option>
+            <option>Custom Design</option>
+          </select>
+        </div>
+        <div class="measurements-note">
+          <div style="font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-weight:600">Your Measurements (in cm)</div>
+          <p>Please provide your measurements as accurately as possible. We recommend having someone assist you. All measurements are in centimetres.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Height (cm)</label>
+          <input class="form-input" type="number" placeholder="e.g. 165">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bust (cm)</label>
+          <input class="form-input" type="number" placeholder="e.g. 90">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Waist (cm)</label>
+          <input class="form-input" type="number" placeholder="e.g. 75">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hip (cm)</label>
+          <input class="form-input" type="number" placeholder="e.g. 95">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Shoulder Width (cm)</label>
+          <input class="form-input" type="number" placeholder="e.g. 38">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Upload Inspiration Photos</label>
+          <div class="upload-area">
+            <div class="upload-icon">📎</div>
+            <div class="upload-text">Click to upload or drag and drop images here<br><span style="color:var(--beige)">PNG, JPG, WEBP up to 10MB each</span></div>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Special Instructions</label>
+          <textarea class="form-textarea" placeholder="Describe any special details, fabric preferences, occasion, or customizations you'd like..."></textarea>
+        </div>
+        <div class="form-group full" style="text-align:center">
+          <button class="btn-primary" style="width:auto;padding:1.2rem 4rem;font-size:0.7rem">Submit Your Order Request</button>
+          <p style="font-size:0.65rem;color:var(--gray);margin-top:1rem;letter-spacing:0.5px">We will contact you within 24 hours to confirm details and provide a quote.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div>
+      <div class="section-label" style="color:var(--gold)">Our Story</div>
+      <h1 style="font-family:var(--font-serif);font-size:3.5rem;font-weight:300;color:var(--white);line-height:1.1;margin-bottom:1.5rem">Redefining <em style="font-style:italic">Nigerian</em><br>Luxury Fashion</h1>
+      <div class="gold-divider"></div>
+      <p style="font-size:0.78rem;letter-spacing:0.5px;color:rgba(255,255,255,0.45);line-height:2;max-width:480px">Simi Defined was born in Lagos from a singular belief: that Nigerian women deserve fashion that is as extraordinary as they are. We merge traditional African craftsmanship with contemporary luxury design to create pieces that transcend trends.</p>
+    </div>
+    <div style="background:rgba(201,162,39,0.05);border:1px solid rgba(201,162,39,0.15);padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+      <div style="text-align:center;padding:1.5rem;border:1px solid rgba(201,162,39,0.1)"><div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--gold)">2020</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.3rem">Founded</div></div>
+      <div style="text-align:center;padding:1.5rem;border:1px solid rgba(201,162,39,0.1)"><div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--gold)">500+</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.3rem">Clients Dressed</div></div>
+      <div style="text-align:center;padding:1.5rem;border:1px solid rgba(201,162,39,0.1)"><div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--gold)">89</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.3rem">Active Styles</div></div>
+      <div style="text-align:center;padding:1.5rem;border:1px solid rgba(201,162,39,0.1)"><div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--gold)">5★</div><div style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.3rem">Average Rating</div></div>
+    </div>
+  </div>
+  <div class="about-body">
+    <div class="section-label">Our Values</div>
+    <h2 class="section-title">Why Choose<br><em style="font-family:var(--font-serif);font-style:italic">Simi Defined</em></h2>
+    <div class="about-grid">
+      <div class="about-card"><div class="about-card-icon">✂️</div><div class="about-card-title">Master Craftsmanship</div><div class="about-card-text">Every piece is handcrafted in our Lagos atelier by skilled artisans trained in both traditional Nigerian techniques and contemporary luxury fashion.</div></div>
+      <div class="about-card"><div class="about-card-icon">💎</div><div class="about-card-title">Premium Materials</div><div class="about-card-text">We source the finest fabrics from across Nigeria, West Africa, and internationally — including silk, lace, ankara, aso-oke, and imported brocades.</div></div>
+      <div class="about-card"><div class="about-card-icon">👑</div><div class="about-card-title">Made for You</div><div class="about-card-text">Whether ready-to-wear or bespoke, every Simi Defined piece is designed with the modern African woman in mind — her lifestyle, her occasions, her body.</div></div>
+    </div>
+  </div>
+  <div class="founder-section">
+    <div class="founder-img">👩‍🎨</div>
+    <div>
+      <div class="section-label" style="color:var(--gold)">The Founder</div>
+      <h2 class="section-title" style="font-size:2rem">Meet Simi</h2>
+      <div class="gold-divider"></div>
+      <p class="founder-quote">"I started Simi Defined because I wanted to see Nigerian women dressed in clothes that made them feel as powerful and beautiful as they truly are."</p>
+      <div class="founder-name">Simi — Founder & Creative Director</div>
+      <p style="font-size:0.72rem;color:var(--gray);line-height:1.9;margin-top:1rem">With over 10 years of experience in fashion design and styling, Simi brings a unique vision that blends Nigerian cultural heritage with global luxury fashion sensibilities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="shop-header">
+    <h1 class="shop-title">Contact Us</h1>
+    <p class="shop-breadcrumb">We would love to hear from you</p>
+  </div>
+  <div class="contact-body">
+    <div class="contact-info">
+      <div class="section-label" style="color:var(--gold)">Get in Touch</div>
+      <h2 style="font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--white);margin-bottom:1rem;font-style:italic">Let's Create<br>Something Beautiful</h2>
+      <div class="gold-divider"></div>
+      <div style="margin-top:3rem">
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-info-label">Location</div><div class="contact-info-val">Victoria Island, Lagos, Nigeria</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📱</div>
+          <div><div class="contact-info-label">WhatsApp & Phone</div><div class="contact-info-val">+234 800 SIMI DEFINED</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-info-label">Email</div><div class="contact-info-val">hello@simidefined.com</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🕐</div>
+          <div><div class="contact-info-label">Studio Hours</div><div class="contact-info-val">Mon–Sat: 9am – 7pm<br><span style="color:rgba(255,255,255,0.4);font-size:0.78rem">Sunday: By appointment only</span></div></div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;padding:1.5rem;background:rgba(201,162,39,0.05);border:1px solid rgba(201,162,39,0.15)">
+        <div style="font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Quick WhatsApp</div>
+        <p style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-bottom:1rem;line-height:1.7">For the fastest response, message us on WhatsApp. We typically respond within 2 hours during business hours.</p>
+        <button class="btn-whatsapp" style="font-size:0.65rem;letter-spacing:2px;padding:0.9rem">📱 Chat on WhatsApp</button>
+      </div>
+    </div>
+    <div class="contact-form-panel">
+      <div class="section-label">Send a Message</div>
+      <h3 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--charcoal);margin-bottom:2rem">We Respond Within 24 Hours</h3>
+      <div style="display:flex;flex-direction:column;gap:1.2rem">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <select class="form-input" style="cursor:pointer">
+            <option>General Enquiry</option>
+            <option>Order Enquiry</option>
+            <option>Made to Order</option>
+            <option>Returns & Exchanges</option>
+            <option>Styling Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us how we can help..." style="min-height:130px"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;padding:1.1rem">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FAB -->
+<div class="whatsapp-fab" title="Chat on WhatsApp">📱</div>
+
+<script>
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+page);
+  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+}
+
+function toggleCart(){
+  const overlay=document.getElementById('cartOverlay');
+  const drawer=document.getElementById('cartDrawer');
+  const isOpen=drawer.classList.contains('open');
+  if(isOpen){
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+  } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+  }
+}
+
+document.querySelectorAll('.size-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const siblings=this.closest('.size-grid')?.querySelectorAll('.size-btn');
+    if(siblings){siblings.forEach(s=>s.classList.remove('active'));this.classList.add('active')}
+  });
+});
+
+document.querySelectorAll('.color-dot').forEach(dot=>{
+  dot.addEventListener('click',function(){
+    const siblings=this.closest('.color-dots')?.querySelectorAll('.color-dot');
+    if(siblings){siblings.forEach(s=>s.classList.remove('active'));this.classList.add('active')}
+  });
+});
+
+document.querySelectorAll('.gallery-thumbs .thumb').forEach(t=>{
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.gallery-thumbs .thumb').forEach(s=>s.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>
